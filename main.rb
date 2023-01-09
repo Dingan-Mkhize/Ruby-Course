@@ -115,40 +115,76 @@
 #   puts "Invalid entry"
 # end
 
-users = [
-  { username: "dingan", password: "password1" },
-  { username: "jeffro", password: "password2" },
-  { username: "helena", password: "password3" },
-  { username: "monique", password: "password4" },
-  { username: "larry", password: "password5" },
-]
+# users = [
+#   { username: "dingan", password: "password1" },
+#   { username: "jeffro", password: "password2" },
+#   { username: "helena", password: "password3" },
+#   { username: "monique", password: "password4" },
+#   { username: "larry", password: "password5" },
+# ]
 
-def auth_user(username, password, list_of_users)
-  list_of_users.each do |user_record|
-    if user_record[:username] == username && user_record[:password] == password
-      return user_record
-    end
+# def auth_user(username, password, list_of_users)
+#   list_of_users.each do |user_record|
+#     if user_record[:username] == username && user_record[:password] == password
+#       return user_record
+#     end
+#   end
+#   "Credentials were not valid"
+# end
+
+# puts "Welcome to the authenticator"
+# 25.times { print "-"}
+# puts 
+# puts "This program will take input from the user and compare with password"
+# puts "If password is correct, the user will grt back the user object"
+
+# attempts = 1
+# while attempts < 4
+#   print "Username: "
+#   username = gets.chomp
+#   print "Password: "
+#   password = gets.chomp
+#   authentication = auth_user(username, password, users)
+#   puts authentication
+#   puts "Press n to quit or ay other key to continue: "
+#   input = gets.chomp.downcase
+#   break if input == "n"
+#   attempts += 1
+# end
+# puts "You have exceeded the maximum number of attempts" if attempts == 4
+
+dial_book = { 
+  "newyork" => "212",
+  "newbrunswick" => "732",
+  "edison" => "908",
+  "plainsboro" => "609",
+  "sanfrancisco" => "301",
+  "miami" => "305",
+  "paloalto" => "650",
+  "evanston" => "847",
+  "orlando" => "407",
+  "lancaster" => "717"
+}
+
+def get_city_names(somehash)
+  somehash.keys
+end
+
+def get_area_code(somehash, key)
+  somehash[key]
+end
+
+loop do
+  puts "Do you want to find an area code based on a city name?(Y/N)"
+  answer = gets.chomp.downcase
+  break if answer != "y"
+  puts "Which city do you need the code for?"
+  puts get_city_names(dial_book)
+  puts "Enter your selection"
+  prompt = gets.chomp
+  if dial_book.include?(prompt)
+    puts "The area code for #{prompt} is #{get_area_code(dial_book, prompt)}"
+  else 
+    puts "you entered an invalid city name"
   end
-  "Credentials were not valid"
 end
-
-puts "Welcome to the authenticator"
-25.times { print "-"}
-puts 
-puts "This program will take input from the user and compare with password"
-puts "If password is correct, the user will grt back the user object"
-
-attempts = 1
-while attempts < 4
-  print "Username: "
-  username = gets.chomp
-  print "Password: "
-  password = gets.chomp
-  authentication = auth_user(username, password, users)
-  puts authentication
-  puts "Press n to quit or ay other key to continue: "
-  input = gets.chomp.downcase
-  break if input == "n"
-  attempts += 1
-end
-puts "You have exceeded the maximum number of attempts" if attempts == 4
